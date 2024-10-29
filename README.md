@@ -50,6 +50,17 @@ to customize logging, either
 
 to output logs to a file, provide `--log-path <path>`. file logs will always be trace-level.
 
+### iOS
+
+instructions are provided to get the pcap file from an iOS device using a Mac. 
+- follow apple's instructions on [recording a packet trace](https://developer.apple.com/documentation/network/recording-a-packet-trace) to get `rvictl` working
+- the phone will be bound to `rviX`, where `X` is some number (probably `0`)
+- start the game on the phone and wait on the screen pictured in [the PC steps](#run)
+- on the mac, run `sudo tcpdump -i rviX -w trace.pcap udp port \( 23301 or 23302 \)`
+- tap the phone screen to enter the game
+- once the game is loaded, stop `tcpdump`
+- pass the pcap file to `reliquary-archiver` (see [cli usage](#cli-usage))
+
 ## build from source
 
 - follow instructions [here](https://github.com/rust-pcap/pcap?tab=readme-ov-file#building)
